@@ -19,8 +19,8 @@ public class CursoService {
 
     public String criarCurso(CursoDTO cur){
         Cursos curso = new Cursos();
-        curso.setNome(curso.getNome());
-        curso.setCargahr(curso.getCargahr());
+        curso.setNome(cur.getNome());
+        curso.setCargahr(cur.getCargahr());
         cursoRepository.save(curso);
         return "Curso cadastrado com sucesso!";
     }

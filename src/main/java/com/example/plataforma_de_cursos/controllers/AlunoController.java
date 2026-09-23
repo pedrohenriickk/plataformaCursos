@@ -40,6 +40,11 @@ public class AlunoController {
         return ResponseEntity.ok(service.mostrarAlunos());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> alterarProduto(@PathVariable long id, @RequestBody AlunoDTO dto){
+        return ResponseEntity.ok(service.alterarDados(id,dto));
+    }
+
 
 
 
