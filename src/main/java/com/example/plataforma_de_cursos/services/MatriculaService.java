@@ -20,7 +20,7 @@ public class MatriculaService {
     public String addAlunoCurso(long idAluno, long idCurso){
         Aluno aluno = alunoRepository.findById(idAluno).orElseThrow();
         Cursos cursos = cursoRepository.findById(idCurso).orElseThrow();
-        aluno.criarCurso().add(cursos);
+        aluno.getCursos().add(cursos);
         alunoRepository.save(aluno);
         return "matricula feita com sucesso";
     }

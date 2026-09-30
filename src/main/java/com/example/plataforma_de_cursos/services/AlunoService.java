@@ -1,7 +1,9 @@
 package com.example.plataforma_de_cursos.services;
 
 import com.example.plataforma_de_cursos.DTOs.AlunoDTO;
+import com.example.plataforma_de_cursos.DTOs.CursoDTO;
 import com.example.plataforma_de_cursos.entities.Aluno;
+import com.example.plataforma_de_cursos.entities.Cursos;
 import com.example.plataforma_de_cursos.repositories.AlunoRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,16 @@ public class AlunoService {
         dto.setId(aluno.getId());
         dto.setNome(aluno.getNome());
         dto.setEmail((aluno.getEmail()));
+        for (Cursos cursos: aluno.getCursos()) {
+            CursoDTO cursoDTO = new CursoDTO(cursos);
+            dto.getCursos().add(cursoDTO);
+        }
 
         return dto;
     }
 
     public List<AlunoDTO> mostrarAlunos(){
-        return alunoRepository.findAll().stream().map(aluno -> new AlunoDTO(aluno.getId(),aluno.getNome(),aluno.getEmail())).toList();
+        return alunoRepository.findAll().stream().map(aluno -> new AlunoDTO(aluno.getNome(),aluno.getEmail(),aluno.getId())).toList();
     }
 
     public String deletarAluno(long id){

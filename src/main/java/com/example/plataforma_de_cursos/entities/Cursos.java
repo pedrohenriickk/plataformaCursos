@@ -1,17 +1,16 @@
 package com.example.plataforma_de_cursos.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cursos {
@@ -22,4 +21,12 @@ public class Cursos {
     private String nome;
     @NotNull
     private int cargahr;
+
+    public Cursos(String nome, int cargahr) {
+        this.nome = nome;
+        this.cargahr = cargahr;
+    }
+
+    @ManyToMany(mappedBy = "cursos")
+    private Set<Aluno> alunos = new HashSet<>();
 }

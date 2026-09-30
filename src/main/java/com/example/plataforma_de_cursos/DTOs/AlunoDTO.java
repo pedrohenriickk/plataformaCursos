@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,13 +22,21 @@ public class AlunoDTO {
     private long id;
     @NotBlank
     private String nome;
+    private Set<CursoDTO> cursos = new HashSet<>();
     @NotBlank @Email
     @Column(length = 150)
     private String email;
 
-    public AlunoDTO(String nome, String email) {
+    public AlunoDTO(String nome, Set<CursoDTO> cursos, String email) {
         this.nome = nome;
+        this.cursos = cursos;
         this.email = email;
+    }
+
+    public AlunoDTO(String email, String nome, long id) {
+        this.email = email;
+        this.nome = nome;
+        this.id = id;
     }
 
 

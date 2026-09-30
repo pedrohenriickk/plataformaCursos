@@ -1,6 +1,7 @@
 package com.example.plataforma_de_cursos.DTOs;
 
 
+import com.example.plataforma_de_cursos.entities.Cursos;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,8 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CursoDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotBlank
     private String nome;
@@ -25,5 +24,11 @@ public class CursoDTO {
     public CursoDTO(String nome, int cargahr) {
         this.nome = nome;
         this.cargahr = cargahr;
+    }
+
+    public CursoDTO(Cursos cursos) {
+        this.id = cursos.getId();
+        this.nome = cursos.getNome();
+        this.cargahr = cursos.getCargahr();
     }
 }
